@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
+const connect = require('connect');
 const session = require('express-session');
 const Admin = require('./models/Admin');
 const User = require('./models/User');

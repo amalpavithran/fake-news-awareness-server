@@ -4,12 +4,13 @@
   "description": "A server for fake news awareness website",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "author": "Amal Pavithran",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "connect": "^3.7.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",

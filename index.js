@@ -13,7 +13,8 @@ const LocalStrategy = require('passport-local').Strategy;
 //MIDDLEWARES
 app.use(cors());
 app.use(express.json());
-app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(connect.cookieParser());
+app.use(connect.cookieSession({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60 * 60 * 1000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -89,6 +90,6 @@ app.get("/", (req, res) => {
     pool.query('SELECT * FROM admins;').then((value) => { console.log(value.rows[0]); });
     return res.send("Hello");
 })
-app.listen(5000, () => {
+app.listen(process.env.PORT || 8000, () => {
     console.log("RUNNING");
 })

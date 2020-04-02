@@ -4,7 +4,7 @@
   "description": "A server for fake news awareness website",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon index.js"
+    "start":"node index.js"
   },
   "author": "Amal Pavithran",
   "license": "ISC",

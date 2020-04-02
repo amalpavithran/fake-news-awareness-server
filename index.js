@@ -13,20 +13,20 @@ const LocalStrategy = require('passport-local').Strategy;
 //MIDDLEWARES
 app.use(cors());
 app.use(express.json());
-app.use(session({secret : process.env.SESSION_SECRET}));
+app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 //ROUTES
 app.post('/news', async (req, res) => {
     try {
-        const { news, email } = await req.body;
+        const { news_title, news_body, email } = await req.body;
         console.log(news);
         console.log(email);
-        const { error, value } = await User.validate({ news: news, email: email });
+        const { error, value } = await User.validate({ news_title: news_title, news_body: news_body, email: email });
         console.log("HIT");
         if (error === undefined) {
-            const status = await pool.query("INSERT INTO news(news,email,news_status) VALUES ($1,$2,'pending') RETURNING *", [news, email]);
+            const status = await pool.query("INSERT INTO news(news_title,news_body,email,news_status) VALUES ($1,$2,$3,'pending') RETURNING *", [news_title, news_body, email]);
             return res.json(status.rows[0]);
         } else {
             console.log(error + " else");
@@ -37,7 +37,7 @@ app.post('/news', async (req, res) => {
         console.error(error.message + " catch");
     }
 })
-app.get('/news',async (req,res)=>{
+app.get('/news', async (req, res) => {
     try {
         const news = await pool.query('SELECT * FROM news');
         return res.json(news.rows);
@@ -68,18 +68,18 @@ app.post('/admin/register', async (req, res) => {
                     return res.status(400).json({ 'message': 'An error occured' });
                 }
             }
-            
+
         });
 
-        
+
     } catch (e) {
         console.log(e);
         res.send('Internal Server Error').status(500);
     }
 })
-app.put("/admin/authenticate", (req,res)=>{
+app.put("/admin/authenticate", (req, res) => {
     try {
-        const {email} = req.body;
+        const { email } = req.body;
 
     } catch (err) {
         console.log(err);

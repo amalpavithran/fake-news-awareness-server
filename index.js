@@ -41,7 +41,9 @@ app.post('/news', async (req, res) => {
 })
 app.get('/news', async (req, res) => {
     try {
+        console.log("GETTING LATEST NEWS");
         const news = await pool.query('SELECT * FROM news');
+        console.log("GOT LATEST NEWS");
         return res.json(news.rows);
     } catch (err) {
         console.error(err.message);

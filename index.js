@@ -47,7 +47,6 @@ app.get('/news', async (req, res) => {
         console.error(err.message);
     }
 })
-
 app.post('/admin/register', async (req, res) => {
     try {
         const { email, password } = req.body;

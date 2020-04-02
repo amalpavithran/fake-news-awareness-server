@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
-const connect = require('connect');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const Admin = require('./models/Admin');
 const User = require('./models/User');
@@ -14,8 +14,8 @@ const LocalStrategy = require('passport-local').Strategy;
 //MIDDLEWARES
 app.use(cors());
 app.use(express.json());
-app.use(connect.cookieParser());
-app.use(connect.cookieSession({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60 * 60 * 1000 }}));
+app.use(cookieParser());
+app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60 * 60 * 1000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 

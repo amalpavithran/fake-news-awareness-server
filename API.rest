@@ -1,0 +1,23 @@
+@url = https://google.com
+
+POST {{url}}/news
+Content-Type: application/json
+
+{
+    "news":"How are you?",
+    "email":"amal_110100@gmail.com"
+}
+
+###
+#Create User
+###
+POST {{url}}/register
+Content-Type: application/json
+
+{
+    "email": "amal110100@gmail.com",
+    "password": "Hello World"
+}
+
+###
+GET {{url}}?query=hello

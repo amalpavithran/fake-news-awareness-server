@@ -14,8 +14,8 @@ const LocalStrategy = require('passport-local').Strategy;
 //MIDDLEWARES
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
-app.use(session({ secret: process.env.SESSION_SECRET, cookie: { maxAge: 60 * 60 * 1000 }}));
+app.use(cookieParser('secret'));
+app.use(session());
 app.use(passport.initialize());
 app.use(passport.session());
 
